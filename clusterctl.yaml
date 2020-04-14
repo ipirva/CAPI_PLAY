@@ -1,0 +1,23 @@
+## display the list of providers and their repository configurations
+# clusterctl config repositories
+# each provider will have a cluster-template.yaml 
+## which variables could be defined here blow?
+# clusterctl config cluster xxx --config clusterctl.yaml --infrastructure aws:${CAPA_VERSION} --list-variables
+## the below variables will be filled into the cluster-template.yaml when the command is executed to bootstrap a workload cluster:
+# clusterctl config cluster mycluster -n mycluster --config clusterctl.yaml --infrastructure aws --kubernetes-version v1.18.0 --control-plane-machine-count 3 --worker-machine-count 3 > wc-1.yaml
+# or provide this clusterctl.yaml file as input
+# clusterctl config cluster xxx --config clusterctl.yaml --infrastructure aws:${CAPA_VERSION}
+# example: 
+# 13/04/2020
+# if --control-plane-machine-count and --worker-machine-count are not specified, they are set by default to 1 and respectively to 0 - the values from clusterctl.yaml are ignored
+# we can use kubectl scale --replicas later
+# clusterctl config cluster mycluster -n mycluster --config clusterctl.yaml --infrastructure aws:${CAPA_VERSION} | kubectl apply -f - or,
+# clusterctl config cluster mycluster -n mycluster --config clusterctl.yaml --infrastructure aws:${CAPA_VERSION} > ${PWD}/clusters/base/cluster-template.yaml and apply it afterwards
+AWS_REGION: eu-west-2
+AWS_CONTROL_PLANE_MACHINE_TYPE: t3.medium
+AWS_NODE_MACHINE_TYPE: t3.medium
+AWS_SSH_KEY_NAME: base-ssh
+CLUSTER_NAME: base
+CONTROL_PLANE_MACHINE_COUNT: 1
+WORKER_MACHINE_COUNT: 0
+KUBERNETES_VERSION: v1.18.0

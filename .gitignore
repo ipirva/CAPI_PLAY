@@ -1,0 +1,7 @@
+.DS_Store
+**/logs
+**/keys
+*-ssh*
+cluster-template-custom_.yaml
+**/kubeconfig
+kubeconfig-path
